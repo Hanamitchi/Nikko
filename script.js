@@ -20,6 +20,12 @@ async function login() {
 // PAGE NAVIGATION
 const navItems = document.querySelectorAll('.nav-item');
 const pages = document.querySelectorAll('.page');
+const burger = document.getElementById("burger");
+const nav = document.getElementById("nav");
+
+burger.addEventListener("click", () => {
+ nav.classList.toggle("show");
+});
 
 navItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -40,6 +46,12 @@ navItems.forEach(item => {
             pageElement.classList.add('active');
         }
     });
+});
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    nav.classList.remove('show');
+  });
 });
 
 // Set home page as active on load
@@ -132,6 +144,33 @@ document.addEventListener('click', (e) => {
         if (navItem) {
             navItem.click();
         }
+    }
+});
+
+// Initialize on page load IMG CERT full screen load
+document.addEventListener('DOMContentLoaded', function() {
+    setActiveNav();
+    animateProgressBars();
+    handleContactForm();
+});
+
+function openImage(img){
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+
+    modal.style.display = "block";
+    modalImg.src = img.src;
+}
+
+function closeImage(){
+    document.getElementById("imgModal").style.display = "none";
+}
+
+/* CLOSE WITH ESC KEY */
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){
+        closeImage();
     }
 });
 
